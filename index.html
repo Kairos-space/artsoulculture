@@ -490,8 +490,21 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#36506b"/><text x="50" y="58" font-family="Georgia,serif" font-size="34" fill="#f3efe6" text-anchor="middle">AS</text></svg>
 </template>
 <script src="image-slot.js"></script>
-<script src="deck-stage.js"></script>
 <script>
+  (function(){
+    var DESIGN_W = 1080;
+    var DESIGN_H = 1920;
+    function fitSlides(){
+      var maxWidth = Math.min(window.innerWidth - 32, 720);
+      if (window.innerWidth <= 640) maxWidth = window.innerWidth;
+      var scale = Math.max(0.1, maxWidth / DESIGN_W);
+      document.documentElement.style.setProperty('--site-slide-scale', scale);
+      document.documentElement.style.setProperty('--site-slide-w', Math.round(DESIGN_W * scale) + 'px');
+      document.documentElement.style.setProperty('--site-slide-h', Math.round(DESIGN_H * scale) + 'px');
+    }
+    fitSlides();
+    window.addEventListener('resize', fitSlides, { passive: true });
+  })();
   (function(){
     // tap-to-play for videos (WeChat / mobile reliability)
     document.querySelectorAll('.ph video').forEach(function(v){
