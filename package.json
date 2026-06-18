@@ -1,0 +1,9 @@
+{
+  "name": "artsoulculture-site",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "build": "echo \"Static site ready\"",
+    "start": "python3 -m http.server 3000"
+  }
+}
