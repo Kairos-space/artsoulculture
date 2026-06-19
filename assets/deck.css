@@ -358,6 +358,18 @@ nav a:hover,
   min-height: 620px;
   border-bottom: 1px solid var(--line);
 }
+.resource-page {
+  grid-template-columns: minmax(360px, 0.78fr) minmax(0, 1.22fr);
+  min-height: 560px;
+}
+.resource-page .page-image {
+  min-height: 560px;
+  max-height: 640px;
+}
+.resource-page .page-copy {
+  padding-top: clamp(50px, 6vw, 82px);
+  padding-bottom: clamp(46px, 6vw, 72px);
+}
 .page-image {
   min-height: 620px;
   overflow: hidden;
@@ -688,9 +700,20 @@ nav a:hover,
 }
 .media-metrics {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  background: #e7f0f7;
+  grid-template-columns: 1.2fr repeat(4, 1fr);
+  background: #eef4f7;
   border-bottom: 1px solid var(--line);
+}
+.media-metrics::before {
+  content: "C33 × MODEZINE";
+  display: flex;
+  align-items: center;
+  padding: 30px 38px;
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 24px;
+  letter-spacing: 0.04em;
+  border-right: 1px solid var(--line);
 }
 .media-metrics div {
   padding: 30px 38px;
@@ -707,22 +730,26 @@ nav a:hover,
   display: block;
   margin-top: 10px;
   color: var(--muted);
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.08em;
+  line-height: 1.4;
 }
 .brand-cloud {
-  padding: 52px 46px 64px;
+  display: grid;
+  grid-template-columns: 0.34fr 1fr;
+  gap: 54px;
+  padding: 48px 46px 58px;
   border-bottom: 1px solid var(--line);
 }
 .brand-cloud h2 {
   max-width: 760px;
-  margin-top: 20px;
+  margin-top: 0;
 }
 .brand-cloud p:not(.eyebrow) {
   max-width: 1040px;
   font-family: var(--serif);
-  font-size: clamp(21px, 2.45vw, 34px);
-  line-height: 1.32;
+  font-size: clamp(20px, 2.15vw, 31px);
+  line-height: 1.34;
 }
 .contact-page {
   min-height: calc(100vh - 74px);
@@ -801,6 +828,7 @@ nav a:hover,
   .editorial-strip,
   .site-footer,
   .split-page,
+  .resource-page,
   .principle-band,
   .service-page-grid,
   .process-band,
@@ -866,6 +894,14 @@ nav a:hover,
   .media-metrics {
     grid-template-columns: repeat(2, 1fr);
   }
+  .media-metrics::before {
+    grid-column: 1 / -1;
+    min-height: 88px;
+  }
+  .brand-cloud {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
 }
 
 @media (max-width: 640px) {
@@ -889,6 +925,11 @@ nav a:hover,
   .process-band ol,
   .media-metrics {
     grid-template-columns: 1fr;
+  }
+  .media-metrics::before {
+    min-height: auto;
+    padding-right: 22px;
+    padding-left: 22px;
   }
   .page-hero {
     min-height: auto;
