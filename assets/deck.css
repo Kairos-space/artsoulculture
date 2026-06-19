@@ -183,14 +183,14 @@ h1 {
 
 .hero-media {
   position: relative;
-  min-height: min(620px, calc(100vh - 150px));
+  height: min(620px, calc(100vh - 150px));
+  min-height: 520px;
   overflow: hidden;
   box-shadow: var(--shadow);
 }
 
 .hero-media img {
   height: 100%;
-  min-height: min(620px, calc(100vh - 150px));
   object-fit: cover;
   object-position: center 38%;
 }
