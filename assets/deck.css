@@ -472,6 +472,28 @@ nav a:hover,
   color: var(--muted);
   line-height: 1.8;
 }
+.credential-panel {
+  display: grid;
+  grid-template-columns: 0.65fr 1.4fr 1fr;
+  gap: 46px;
+  align-items: start;
+  padding: 54px 46px;
+  border-bottom: 1px solid var(--line);
+  background: var(--paper);
+}
+.credential-panel h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(34px, 4vw, 58px);
+  font-weight: 500;
+  line-height: 1.02;
+}
+.credential-panel p:not(.eyebrow) {
+  margin: 0;
+  color: var(--muted);
+  font-size: 16px;
+  line-height: 1.8;
+}
 .resource-list {
   margin: 34px 0 0;
   padding: 0;
@@ -525,7 +547,8 @@ nav a:hover,
   .service-page-grid,
   .work-page-grid,
   .creator-detail-grid,
-  .text-columns {
+  .text-columns,
+  .credential-panel {
     grid-template-columns: 1fr;
   }
   .page-image {
