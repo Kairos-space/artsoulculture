@@ -68,83 +68,15 @@ nav {
 }
 
 .hero {
-  height: 440px;
-  display: grid;
-  grid-template-columns: 30vw 1fr 26vw;
+  display: block;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background: #eef4f7;
 }
-.hero-visual {
-  min-width: 0;
-}
-.hero-visual.left img {
-  object-position: 74% 48%;
-  filter: saturate(0.88) contrast(0.96);
-}
-.hero-visual.right img {
-  object-position: 50% 38%;
-  filter: saturate(0.72) brightness(1.12);
-  opacity: 0.72;
-}
-.hero-sky {
-  position: relative;
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.35), rgba(238,244,247,0.75)),
-    linear-gradient(100deg, rgba(238,244,247,0.2), rgba(255,255,255,0.82)),
-    url("img/moodboard.png");
-  background-size: cover;
-  background-position: 65% 32%;
-  filter: saturate(0.32) brightness(1.18);
-  opacity: 0.72;
-}
-.hero-sky::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background: rgba(238,244,247,0.58);
-}
-.hero-copy {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  padding: 36px 5vw 40px;
-  background:
-    linear-gradient(90deg, rgba(238,244,247,0.96), rgba(238,244,247,0.78) 54%, rgba(238,244,247,0.42)),
-    radial-gradient(circle at 72% 35%, rgba(255,255,255,0.86), transparent 42%);
-}
-.hero-copy h1 {
-  margin: 0 0 24px;
-  max-width: 900px;
-  font-family: var(--serif);
-  font-size: clamp(56px, 4.9vw, 82px);
-  font-weight: 500;
-  line-height: 0.92;
-  letter-spacing: -0.02em;
-}
-.cities {
-  margin: 0 0 18px;
-  font-size: 22px;
-  letter-spacing: 0.28em;
-}
-.hero-copy i {
-  display: block;
-  width: 14px;
-  height: 1px;
-  margin-bottom: 18px;
-  background: var(--ink);
-}
-.cn-line {
-  margin: 0 0 8px;
-  font-family: var(--cn);
-  font-size: 13px;
-  letter-spacing: 0.5em;
-}
-.hero-note {
-  margin: 0;
-  font-family: var(--serif);
-  font-size: 16px;
+.hero-image img {
+  width: 100%;
+  height: auto;
+  object-fit: contain;
 }
 
 .about-shell {
@@ -357,16 +289,6 @@ nav {
   nav { display: none; }
   .hero {
     height: auto;
-    grid-template-columns: 1fr;
-  }
-  .hero-visual.left { height: 360px; order: 2; }
-  .hero-visual.right { display: none; }
-  .hero-copy {
-    order: 1;
-    padding: 56px 22px 46px;
-  }
-  .hero-copy h1 {
-    font-size: clamp(52px, 14vw, 78px);
   }
   .about-shell,
   .creator-band,
