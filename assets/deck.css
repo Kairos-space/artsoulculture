@@ -357,6 +357,16 @@ nav a:hover,
   font-size: clamp(32px, 3vw, 46px);
   white-space: nowrap;
 }
+html[lang="en"] .about-hero h1 {
+  max-width: 1120px;
+  line-height: 1.03;
+  white-space: normal;
+}
+html[lang="en"] .service-page-grid h2,
+html[lang="en"] .roster-grid h3 {
+  font-family: var(--serif);
+  line-height: 1.08;
+}
 .split-page {
   display: grid;
   grid-template-columns: minmax(360px, 0.9fr) minmax(0, 1.1fr);
