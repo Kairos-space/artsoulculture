@@ -596,6 +596,110 @@ nav a:hover,
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
+.moving-image {
+  border-bottom: 1px solid var(--line);
+  background: #f6f4ef;
+}
+.moving-image-head {
+  display: grid;
+  grid-template-columns: 0.42fr 1.58fr;
+  gap: 54px;
+  padding: 54px 46px 50px;
+  border-bottom: 1px solid var(--line);
+}
+.moving-image-head h2 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: clamp(30px, 3.2vw, 46px);
+  font-weight: 500;
+  line-height: 1.08;
+}
+.moving-image-head div > p {
+  max-width: 680px;
+  margin: 18px 0 0;
+  color: var(--muted);
+  line-height: 1.75;
+}
+.film-features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+}
+.moving-image figure {
+  margin: 0;
+  min-width: 0;
+  background: var(--paper);
+}
+.moving-image video {
+  display: block;
+  width: 100%;
+  background: #0c1115;
+  object-fit: cover;
+}
+.film-features video {
+  aspect-ratio: 16 / 9;
+}
+.moving-image figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 20px;
+  min-height: 82px;
+  padding: 20px 26px 22px;
+}
+.moving-image figcaption span,
+.film-section-head span {
+  color: var(--gold);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+}
+.moving-image figcaption strong {
+  font-family: var(--serif);
+  font-size: 23px;
+  font-weight: 500;
+  text-align: right;
+}
+.film-section-head {
+  display: grid;
+  grid-template-columns: 0.22fr 0.78fr 1fr;
+  gap: 28px;
+  align-items: baseline;
+  padding: 34px 46px 26px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.film-section-head h3 {
+  margin: 0;
+  font-family: var(--serif);
+  font-size: 27px;
+  font-weight: 500;
+}
+.film-section-head p {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-align: right;
+}
+.vertical-reels {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+}
+.vertical-reels video {
+  aspect-ratio: 4 / 5;
+}
+.film-library {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1px;
+  background: var(--line);
+}
+.film-library video {
+  aspect-ratio: 16 / 9;
+}
 .creator-detail-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -895,12 +999,21 @@ nav a:hover,
   .process-band,
   .work-page-grid,
   .case-band,
+  .film-features,
+  .film-library,
   .creator-detail-grid,
   .text-columns,
   .roster-grid,
   .credential-panel,
   .contact-page address {
     grid-template-columns: 1fr;
+  }
+  .moving-image-head {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  .vertical-reels {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
   }
   .page-image {
     min-height: 420px;
@@ -988,6 +1101,33 @@ nav a:hover,
   .site-footer {
     padding-right: 22px;
     padding-left: 22px;
+  }
+  .moving-image-head,
+  .film-section-head {
+    padding-right: 22px;
+    padding-left: 22px;
+  }
+  .film-section-head {
+    grid-template-columns: auto 1fr;
+    gap: 10px 18px;
+  }
+  .film-section-head p {
+    grid-column: 2;
+    text-align: left;
+  }
+  .vertical-reels {
+    grid-template-columns: 1fr;
+  }
+  .vertical-reels video {
+    max-height: 76vh;
+    object-fit: contain;
+  }
+  .moving-image figcaption {
+    min-height: 70px;
+    padding: 17px 22px 19px;
+  }
+  .moving-image figcaption strong {
+    font-size: 20px;
   }
   .capabilities,
   .creator-band dl,
