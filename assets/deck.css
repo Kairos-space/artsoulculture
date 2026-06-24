@@ -74,15 +74,64 @@ nav a:hover,
 }
 
 .hero {
+  position: relative;
   display: block;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
   background: #eef4f7;
 }
 .hero-image img {
+  display: block;
   width: 100%;
   height: auto;
   object-fit: contain;
+}
+.hero-positioning {
+  position: absolute;
+  top: 8%;
+  bottom: 8%;
+  left: 37.5%;
+  display: flex;
+  width: 47%;
+  flex-direction: column;
+  justify-content: center;
+  padding: 2.2vw 3.2vw;
+  background: rgba(238, 244, 247, 0.9);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+.hero-positioning::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 100%;
+  width: 24vw;
+  background: linear-gradient(90deg, rgba(238, 244, 247, 0.9), rgba(238, 244, 247, 0.58) 55%, rgba(238, 244, 247, 0));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  content: "";
+}
+.hero-positioning > * {
+  position: relative;
+  z-index: 1;
+}
+.hero-positioning p,
+.hero-positioning span {
+  margin: 0;
+  font-family: var(--sans);
+  font-size: clamp(9px, 0.76vw, 12px);
+  letter-spacing: 0.15em;
+}
+.hero-positioning h1 {
+  margin: 0.7vw 0 1vw;
+  font-family: var(--cn);
+  font-size: clamp(22px, 3.25vw, 52px);
+  font-weight: 500;
+  line-height: 1.04;
+}
+html[lang="en"] .hero-positioning h1 {
+  font-family: var(--serif);
+  font-weight: 500;
 }
 
 .about-shell {
@@ -1014,6 +1063,15 @@ html[lang="en"] .roster-grid h3 {
   .hero {
     height: auto;
   }
+  .hero-positioning {
+    left: 34%;
+    width: 56%;
+    padding: 16px 20px;
+  }
+  .hero-positioning h1 {
+    margin: 5px 0 7px;
+    font-size: clamp(18px, 4vw, 30px);
+  }
   .about-shell,
   .creator-band,
   .editorial-strip,
@@ -1126,6 +1184,23 @@ html[lang="en"] .roster-grid h3 {
     overflow: visible;
     padding-bottom: 0;
     text-align: center;
+  }
+  .hero-positioning {
+    top: 6%;
+    bottom: 6%;
+    left: 35%;
+    width: 58%;
+    padding: 8px 11px;
+  }
+  .hero-positioning p,
+  .hero-positioning span {
+    font-size: 6px;
+    letter-spacing: 0.08em;
+  }
+  .hero-positioning h1 {
+    margin: 3px 0 4px;
+    font-size: clamp(14px, 4.7vw, 22px);
+    line-height: 1;
   }
   nav a {
     min-width: 0;
