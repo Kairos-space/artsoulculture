@@ -1,10 +1,11 @@
 :root {
-  --paper: #f7f5f1;
-  --paper-2: #edf4f9;
-  --ink: #14263a;
-  --muted: #5f6d79;
-  --line: rgba(20, 38, 58, 0.14);
-  --gold: #b89f7a;
+  --paper: #f7f2eb;
+  --paper-2: #f3eee7;
+  --ink: #171514;
+  --muted: #64605a;
+  --line: rgba(23, 21, 20, 0.15);
+  --gold: #8f141a;
+  --red: #8f141a;
   --serif: "Cormorant Garamond", "Noto Serif SC", Georgia, serif;
   --sans: "Jost", "Noto Sans SC", Arial, sans-serif;
   --cn: "Noto Serif SC", serif;
@@ -26,31 +27,42 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 .site-header {
   height: 74px;
   display: grid;
-  grid-template-columns: 240px 1fr 120px;
+  grid-template-columns: 300px 1fr 120px;
   align-items: center;
   padding: 0 46px;
-  background: rgba(248, 247, 244, 0.94);
+  background: rgba(247, 242, 235, 0.94);
   border-bottom: 1px solid var(--line);
   backdrop-filter: blur(18px);
 }
 
 .logo {
   display: inline-grid;
-  gap: 2px;
+  gap: 5px;
   width: max-content;
   line-height: 1;
 }
 .logo span {
-  font-family: var(--serif);
+  font-family: var(--cn);
   font-size: 28px;
-  font-weight: 500;
-  letter-spacing: 0.03em;
+  font-weight: 600;
+  letter-spacing: 0.34em;
 }
 .logo small {
-  padding-left: 25px;
-  font-family: var(--cn);
-  font-size: 12px;
-  letter-spacing: 0.42em;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding-left: 0;
+  font-family: var(--serif);
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.logo small::before {
+  display: block;
+  width: 28px;
+  height: 1px;
+  background: var(--red);
+  content: "";
 }
 
 nav {
@@ -78,7 +90,7 @@ nav a:hover,
   display: block;
   overflow: hidden;
   border-bottom: 1px solid var(--line);
-  background: #eef4f7;
+  background: var(--paper-2);
 }
 .hero-image img {
   display: block;
@@ -96,7 +108,7 @@ nav a:hover,
   flex-direction: column;
   justify-content: center;
   padding: 2.2vw 3.2vw;
-  background: rgba(238, 244, 247, 0.9);
+  background: rgba(247, 242, 235, 0.92);
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
 }
@@ -106,7 +118,7 @@ nav a:hover,
   bottom: 0;
   left: 100%;
   width: 24vw;
-  background: linear-gradient(90deg, rgba(238, 244, 247, 0.9), rgba(238, 244, 247, 0.58) 55%, rgba(238, 244, 247, 0));
+  background: linear-gradient(90deg, rgba(247, 242, 235, 0.92), rgba(247, 242, 235, 0.62) 55%, rgba(247, 242, 235, 0));
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   content: "";
@@ -121,6 +133,14 @@ nav a:hover,
   font-family: var(--sans);
   font-size: clamp(9px, 0.76vw, 12px);
   letter-spacing: 0.15em;
+}
+.hero-positioning p::after {
+  display: block;
+  width: 52px;
+  height: 1px;
+  margin: 12px 0 0;
+  background: var(--red);
+  content: "";
 }
 .hero-positioning h1 {
   margin: 0.7vw 0 1vw;
@@ -271,7 +291,7 @@ html[lang="en"] .hero-positioning h1 {
   align-items: center;
   min-height: 140px;
   padding: 28px 44px;
-  background: #e7f0f7;
+  background: #f2ede6;
   border-bottom: 1px solid var(--line);
 }
 .creator-band .eyebrow {
@@ -380,10 +400,10 @@ html[lang="en"] .hero-positioning h1 {
   min-height: 288px;
   padding: clamp(52px, 6vw, 88px) 46px clamp(48px, 6vw, 76px);
   border-bottom: 1px solid var(--line);
-  background: linear-gradient(120deg, #f7f5f1, #edf4f9);
+  background: linear-gradient(120deg, #f7f2eb, #efe8de);
 }
 .page-hero.blue {
-  background: #e7f0f7;
+  background: #f0e8de;
 }
 .page-hero h1,
 .contact-page h1 {
@@ -767,7 +787,7 @@ html[lang="en"] .roster-grid h3 {
 .creator-detail-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background: #e7f0f7;
+  background: #f1eae1;
   border-bottom: 1px solid var(--line);
 }
 .creator-detail-grid div {
@@ -839,7 +859,7 @@ html[lang="en"] .roster-grid h3 {
   align-items: start;
   padding: 38px 46px 44px;
   border-bottom: 1px solid var(--line);
-  background: linear-gradient(90deg, var(--paper), #f1f4f4);
+  background: linear-gradient(90deg, var(--paper), #f1eae1);
 }
 .credential-panel h2 {
   margin: 0;
@@ -869,7 +889,7 @@ html[lang="en"] .roster-grid h3 {
 .media-metrics {
   display: grid;
   grid-template-columns: 1.2fr repeat(4, 1fr);
-  background: #eef4f7;
+  background: #f1eae1;
   border-bottom: 1px solid var(--line);
 }
 .media-metrics::before {
@@ -982,7 +1002,7 @@ html[lang="en"] .roster-grid h3 {
 .contact-page {
   min-height: calc(100vh - 74px);
   padding: clamp(74px, 9vw, 126px) 46px;
-  background: #e7f0f7;
+  background: #f0e8de;
 }
 .contact-page address {
   display: grid;
@@ -1034,7 +1054,7 @@ html[lang="en"] .roster-grid h3 {
   min-height: 168px;
   padding-top: 38px;
   border-top: 1px solid var(--line);
-  background: #f3f5f5;
+  background: #f2ede6;
 }
 
 @media (max-width: 980px) {
