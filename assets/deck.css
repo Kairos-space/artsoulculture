@@ -993,6 +993,10 @@ html[lang="en"] .roster-grid h3 {
   border-top: 1px solid var(--line);
   border-left: 1px solid var(--line);
 }
+.contact-page address.contact-methods-compact {
+  grid-template-columns: minmax(0, 1.2fr) minmax(220px, 0.8fr);
+  max-width: 1040px;
+}
 .contact-methods a,
 .contact-methods div {
   display: grid;
@@ -1089,6 +1093,10 @@ html[lang="en"] .roster-grid h3 {
   .credential-panel,
   .contact-page address {
     grid-template-columns: 1fr;
+  }
+  .contact-page address.contact-methods-compact {
+    grid-template-columns: 1fr;
+    max-width: none;
   }
   .moving-image-head {
     grid-template-columns: 1fr;
