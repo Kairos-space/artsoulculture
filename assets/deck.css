@@ -68,9 +68,9 @@ img, video { display: block; width: 100%; height: 100%; object-fit: cover; }
 nav {
   display: flex;
   justify-content: center;
-  gap: clamp(34px, 5vw, 76px);
+  gap: clamp(18px, 3.2vw, 46px);
   font-family: var(--serif);
-  font-size: 13px;
+  font-size: 12px;
   letter-spacing: 0.08em;
 }
 nav a.active,
@@ -197,7 +197,7 @@ html[lang="en"] .hero-positioning h1 {
 
 .capabilities {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 .capabilities article {
   padding: 42px 44px 34px;
@@ -230,6 +230,16 @@ html[lang="en"] .hero-positioning h1 {
   color: var(--muted);
   font-size: 14px;
   line-height: 1.48;
+}
+.capabilities a,
+.text-link {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+  margin-top: 10px;
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 0.08em;
 }
 
 .work-strip {
@@ -873,6 +883,18 @@ html[lang="en"] .roster-grid h3 {
   color: var(--muted);
   font-size: 15px;
   line-height: 1.75;
+}
+.lumicome-panel {
+  background:
+    linear-gradient(90deg, rgba(10, 10, 10, 0.92), rgba(143, 20, 26, 0.86)),
+    var(--ink);
+  color: var(--paper);
+}
+.lumicome-panel p:not(.eyebrow) {
+  color: rgba(247, 242, 235, 0.72);
+}
+.lumicome-panel .text-link {
+  color: var(--paper);
 }
 .resource-list {
   margin: 34px 0 0;
