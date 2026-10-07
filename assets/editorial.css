@@ -93,3 +93,32 @@ html{scroll-padding-top:24px}body{background:#fff}a,button,summary{touch-action:
 @media(max-width:640px){.project-preview{aspect-ratio:4/3}.preview-pause,.preview-project-link{bottom:12px}.preview-pause{left:12px}.preview-project-link{right:12px}}
 
 .work-page-grid #talent video{object-fit:contain;background:#111}
+
+
+/* Portrait source frames stay complete; landscape films get their own row. */
+.work-page-grid.portrait-projects{grid-template-columns:repeat(4,minmax(0,1fr));gap:36px 24px;padding-bottom:50px;align-items:start}
+.work-page-grid.landscape-projects{align-items:start;padding-bottom:40px}
+.work-page-grid.portrait-projects .portrait-film{display:flex;align-items:center;justify-content:center;padding:0;background:#111;aspect-ratio:9/16;width:100%;height:auto;overflow:hidden}
+.work-page-grid.portrait-projects .portrait-film img,.work-page-grid.portrait-projects .portrait-film video{display:block;width:100%;height:100%;aspect-ratio:9/16;object-fit:contain;object-position:center;margin:0}
+.work-page-grid.portrait-projects h2{font-size:22px}
+@media(min-width:641px) and (max-width:1100px){.work-page-grid.portrait-projects{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.work-page-grid.portrait-projects{grid-template-columns:1fr;padding-bottom:36px}.work-page-grid.portrait-projects h2{font-size:25px}}
+
+.work-page-grid.portrait-projects .dior-portrait,.work-page-grid.portrait-projects .dior-portrait video{aspect-ratio:2664/3654}
+.selected-projects .portrait-project .project-preview{background:#111}
+.selected-projects .portrait-project .project-preview video{object-fit:contain}
+
+/* Film chapters use independent rows; media cannot consume caption space. */
+.moving-image video{height:auto;object-fit:contain}
+.moving-image .film-features,.moving-image .vertical-reels,.moving-image .film-library{padding:0 30px;gap:36px 24px;align-items:start}
+.moving-image figcaption{display:flex;flex-direction:column;align-items:flex-start;gap:10px;padding:18px 0 0;min-height:86px;height:auto}
+.moving-image figcaption span{font-size:10px;line-height:1.4;letter-spacing:.1em}
+.moving-image figcaption strong{font-size:22px;line-height:1.35;font-weight:500;text-align:left;overflow-wrap:anywhere}
+.moving-image .film-section-head{display:grid;grid-template-columns:40px minmax(0,1fr);align-items:start;gap:10px 24px;margin:64px 30px 28px;padding:28px 0 0;border-top:1px solid var(--line);height:auto}
+.film-section-head span{grid-column:1;grid-row:1;font-size:11px;line-height:1.5;padding-top:7px}
+.film-section-head h3{grid-column:2;grid-row:1;margin:0;font-size:28px;line-height:1.3;letter-spacing:-.025em}
+.film-section-head p{grid-column:2;grid-row:2;margin:0;text-align:left;font-size:13px;line-height:1.6;letter-spacing:0}
+.moving-image .vertical-reels{grid-template-columns:repeat(4,minmax(0,1fr))}
+.moving-image .vertical-reels video{aspect-ratio:9/16;background:#111}
+@media(min-width:641px) and (max-width:1100px){.moving-image .vertical-reels{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:640px){.moving-image .film-features,.moving-image .vertical-reels,.moving-image .film-library{padding:0 18px;grid-template-columns:minmax(0,1fr);gap:28px}.moving-image .film-section-head{margin:44px 18px 24px;grid-template-columns:24px minmax(0,1fr);gap:8px 14px;padding-top:22px}.film-section-head h3{font-size:24px}.moving-image figcaption strong{font-size:21px}.moving-image figcaption{min-height:74px}.film-section-head p{font-size:12px}}
