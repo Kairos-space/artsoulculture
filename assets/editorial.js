@@ -2,14 +2,24 @@ const isEnglish = document.documentElement.lang === 'en';
 const filters = document.querySelectorAll('[data-filter]');
 const projects = document.querySelectorAll('[data-category]');
 const status = document.querySelector('.filter-status');
-for (const button of filters) button.addEventListener('click', () => {
+function applyFilter(button) {
   for (const other of filters) other.setAttribute('aria-pressed', String(other === button));
   let count = 0;
   for (const project of projects) {
     project.hidden = button.dataset.filter !== 'all' && project.dataset.category !== button.dataset.filter;
+    if (project.hidden) for (const video of project.querySelectorAll('video')) video.pause();
     if (!project.hidden) count++;
   }
   if (status) status.textContent = isEnglish ? `${count} selected projects` : `显示 ${count} 个项目`;
+  for (const grid of document.querySelectorAll('.work-page-grid')) grid.hidden = !grid.querySelector('[data-category]:not([hidden])');
+}
+for (const button of filters) button.addEventListener('click', () => applyFilter(button));
+window.addEventListener('hashchange', () => {
+  const target = document.getElementById(location.hash.slice(1));
+  if (target?.matches('[data-category]') && target.hidden) {
+    applyFilter(document.querySelector('[data-filter="all"]'));
+    target.scrollIntoView({block:'start'});
+  }
 });
 document.addEventListener('keydown', event => {
   if (event.key === 'Escape') for (const menu of document.querySelectorAll('.header-controls details[open]')) { menu.open = false; menu.querySelector('summary').focus(); }
@@ -69,18 +79,35 @@ if (gallery) {
 // Project-led homepage: motion stays optional and never blocks navigation.
 const cinema = document.querySelector('.cinema-hero');
 const motionPreference = matchMedia('(prefers-reduced-motion: reduce)');
+const connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+const constrainedNetwork = () => Boolean(connection?.saveData || ['slow-2g','2g'].includes(connection?.effectiveType));
+// Only visible film covers load; full clips keep native click-to-play controls.
+const posterObserver = new IntersectionObserver(entries => {
+  for (const entry of entries) if (entry.isIntersecting) {
+    const video = entry.target;
+    video.poster = video.dataset.poster;
+    posterObserver.unobserve(video);
+  }
+}, {rootMargin:'200px'});
+for (const video of document.querySelectorAll('video[data-poster]')) posterObserver.observe(video);
 if (cinema) {
   const film = cinema.querySelector('video');
   const photosPanel = cinema.querySelector('.hero-photo-panel');
   const pause = cinema.querySelector('.hero-pause');
   const projectLink = cinema.querySelector('[data-hero-link]');
   let selected = 'film';
-  let userPaused = motionPreference.matches;
+  let userPaused = motionPreference.matches || constrainedNetwork();
   let inView = true;
   function updatePlayback() {
-    if (selected === 'film' && inView && !userPaused && !document.hidden) film.play().catch(() => { pause.textContent = isEnglish ? 'Play film' : '播放影像'; });
+    if (selected === 'film' && inView && !userPaused && !document.hidden) {
+      if (!film.getAttribute('src')) film.src = film.dataset.src;
+      film.play().catch(() => { userPaused = true; renderPause(); });
+    }
     else film.pause();
     pause.hidden = selected !== 'film';
+    renderPause();
+  }
+  function renderPause() {
     pause.textContent = userPaused ? (isEnglish ? 'Play film' : '播放影像') : (isEnglish ? 'Pause film' : '暂停影像');
     pause.setAttribute('aria-pressed', String(!userPaused));
   }
@@ -90,12 +117,17 @@ if (cinema) {
     for (const other of cinema.querySelectorAll('[data-hero-choice]')) other.setAttribute('aria-pressed', String(other === choice));
     film.hidden = selected !== 'film';
     photosPanel.hidden = selected !== 'photos';
+    if (selected === 'photos') for (const image of photosPanel.querySelectorAll('img[data-src]')) {
+      image.src = image.dataset.src;
+      image.removeAttribute('data-src');
+    }
     projectLink.href = `${isEnglish ? '/en/work' : '/work'}#${selected === 'film' ? 'moving-image' : 'michelle-chen'}`;
     updatePlayback();
   });
   new IntersectionObserver(entries => { inView = entries[0].isIntersecting; updatePlayback(); },{threshold:.1}).observe(cinema);
   document.addEventListener('visibilitychange', updatePlayback);
-  motionPreference.addEventListener('change', () => { userPaused = motionPreference.matches; updatePlayback(); });
+  motionPreference.addEventListener('change', () => { userPaused = motionPreference.matches || constrainedNetwork(); updatePlayback(); });
+  updatePlayback();
 }
 
 // Homepage film previews load on approach and pause away from view.
@@ -103,7 +135,7 @@ for (const preview of document.querySelectorAll('.project-preview')) {
   const film = preview.querySelector('video');
   const toggle = preview.querySelector('.preview-pause');
   let visible = false;
-  let pausedByUser = motionPreference.matches;
+  let pausedByUser = motionPreference.matches || constrainedNetwork();
   function updatePreview() {
     const shouldPlay = visible && !pausedByUser && !document.hidden;
     if (shouldPlay) {
@@ -120,5 +152,6 @@ for (const preview of document.querySelectorAll('.project-preview')) {
   toggle.addEventListener('click', () => { pausedByUser = !pausedByUser; updatePreview(); });
   new IntersectionObserver(entries => { visible = entries[0].isIntersecting; updatePreview(); }, {threshold:.2}).observe(preview);
   document.addEventListener('visibilitychange', updatePreview);
-  motionPreference.addEventListener('change', () => { pausedByUser = motionPreference.matches; updatePreview(); });
+  motionPreference.addEventListener('change', () => { pausedByUser = motionPreference.matches || constrainedNetwork(); updatePreview(); });
+  renderToggle();
 }
