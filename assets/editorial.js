@@ -97,11 +97,3 @@ if (cinema) {
   document.addEventListener('visibilitychange', updatePlayback);
   motionPreference.addEventListener('change', () => { userPaused = motionPreference.matches; updatePlayback(); });
 }
-if (!motionPreference.matches && 'IntersectionObserver' in window) {
-  const reveal = new IntersectionObserver(entries => {
-    for (const entry of entries) if (entry.isIntersecting) { entry.target.classList.add('is-visible'); reveal.unobserve(entry.target); }
-  }, {threshold:.08});
-  for (const element of document.querySelectorAll('.intro-copy,.featured-copy,.selected-projects figure,.service-page-grid article,.roster-grid article')) {
-    element.classList.add('reveal-ready'); reveal.observe(element);
-  }
-}
