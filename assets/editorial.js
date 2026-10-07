@@ -97,3 +97,28 @@ if (cinema) {
   document.addEventListener('visibilitychange', updatePlayback);
   motionPreference.addEventListener('change', () => { userPaused = motionPreference.matches; updatePlayback(); });
 }
+
+// Homepage film previews load on approach and pause away from view.
+for (const preview of document.querySelectorAll('.project-preview')) {
+  const film = preview.querySelector('video');
+  const toggle = preview.querySelector('.preview-pause');
+  let visible = false;
+  let pausedByUser = motionPreference.matches;
+  function updatePreview() {
+    const shouldPlay = visible && !pausedByUser && !document.hidden;
+    if (shouldPlay) {
+      if (!film.getAttribute('src')) film.src = film.dataset.src;
+      film.play().catch(() => { pausedByUser = true; renderToggle(); });
+    } else film.pause();
+    renderToggle();
+  }
+  function renderToggle() {
+    const active = !pausedByUser && visible && !document.hidden;
+    toggle.textContent = isEnglish ? (active ? 'Pause preview' : 'Play preview') : (active ? '暂停预览' : '播放预览');
+    toggle.setAttribute('aria-pressed', String(active));
+  }
+  toggle.addEventListener('click', () => { pausedByUser = !pausedByUser; updatePreview(); });
+  new IntersectionObserver(entries => { visible = entries[0].isIntersecting; updatePreview(); }, {threshold:.2}).observe(preview);
+  document.addEventListener('visibilitychange', updatePreview);
+  motionPreference.addEventListener('change', () => { pausedByUser = motionPreference.matches; updatePreview(); });
+}
