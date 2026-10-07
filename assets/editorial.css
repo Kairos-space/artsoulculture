@@ -91,3 +91,5 @@ html{scroll-padding-top:24px}body{background:#fff}a,button,summary{touch-action:
 .preview-pause:hover,.preview-project-link:hover{background:#fff;color:#111}
 .selected-projects h3 a{color:inherit}.work-page-grid #angelina-kendall video{object-fit:contain;background:#111}
 @media(max-width:640px){.project-preview{aspect-ratio:4/3}.preview-pause,.preview-project-link{bottom:12px}.preview-pause{left:12px}.preview-project-link{right:12px}}
+
+.work-page-grid #talent video{object-fit:contain;background:#111}
